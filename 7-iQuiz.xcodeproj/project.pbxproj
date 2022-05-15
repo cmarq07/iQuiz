@@ -11,6 +11,8 @@
 		0A14F84E2830907D009C1FCD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84D2830907D009C1FCD /* QuestionViewController.swift */; };
 		0A14F85028309ADC009C1FCD /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84F28309ADC009C1FCD /* QuestionTableViewCell.swift */; };
 		0A14F8522830A876009C1FCD /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F8512830A876009C1FCD /* UIColor.swift */; };
+		0A14F8562830AFBE009C1FCD /* CorrectAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F8552830AFBE009C1FCD /* CorrectAnswerViewController.swift */; };
+		0A14F8582830AFD8009C1FCD /* WrongAnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F8572830AFD8009C1FCD /* WrongAnswerViewController.swift */; };
 		0A456E6A282DCF57004D39DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E69282DCF57004D39DB /* AppDelegate.swift */; };
 		0A456E6C282DCF57004D39DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E6B282DCF57004D39DB /* SceneDelegate.swift */; };
 		0A456E6E282DCF57004D39DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E6D282DCF57004D39DB /* ViewController.swift */; };
@@ -24,6 +26,8 @@
 		0A14F84D2830907D009C1FCD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		0A14F84F28309ADC009C1FCD /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		0A14F8512830A876009C1FCD /* UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
+		0A14F8552830AFBE009C1FCD /* CorrectAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectAnswerViewController.swift; sourceTree = "<group>"; };
+		0A14F8572830AFD8009C1FCD /* WrongAnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerViewController.swift; sourceTree = "<group>"; };
 		0A456E66282DCF57004D39DB /* 7-iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "7-iQuiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A456E69282DCF57004D39DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A456E6B282DCF57004D39DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +79,8 @@
 				0A456E74282DCF59004D39DB /* LaunchScreen.storyboard */,
 				0A456E77282DCF59004D39DB /* Info.plist */,
 				0A14F8512830A876009C1FCD /* UIColor.swift */,
+				0A14F8552830AFBE009C1FCD /* CorrectAnswerViewController.swift */,
+				0A14F8572830AFD8009C1FCD /* WrongAnswerViewController.swift */,
 			);
 			path = "7-iQuiz";
 			sourceTree = "<group>";
@@ -154,9 +160,11 @@
 				0A14F8522830A876009C1FCD /* UIColor.swift in Sources */,
 				0A14F84E2830907D009C1FCD /* QuestionViewController.swift in Sources */,
 				0A456E6E282DCF57004D39DB /* ViewController.swift in Sources */,
+				0A14F8582830AFD8009C1FCD /* WrongAnswerViewController.swift in Sources */,
 				0A14F85028309ADC009C1FCD /* QuestionTableViewCell.swift in Sources */,
 				0A456E6A282DCF57004D39DB /* AppDelegate.swift in Sources */,
 				0A456E6C282DCF57004D39DB /* SceneDelegate.swift in Sources */,
+				0A14F8562830AFBE009C1FCD /* CorrectAnswerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

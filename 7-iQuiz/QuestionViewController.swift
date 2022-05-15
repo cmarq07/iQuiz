@@ -38,7 +38,21 @@ extension QuestionViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let answer = subject.questions[currentQuestion].answers[indexPath.row]
-        print(answer.isCorrect)
+        
+        // Set the storyboard
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        if(answer.isCorrect) {
+            let vc = storyBoard.instantiateViewController(withIdentifier: "CorrectAnswerViewController") as! CorrectAnswerViewController
+            
+            // Present the Scene
+            self.present(vc, animated:true, completion:nil)
+        } else {
+            let vc = storyBoard.instantiateViewController(withIdentifier: "WrongAnswerViewController") as! WrongAnswerViewController
+            
+            // Present the Scene
+            self.present(vc, animated:true, completion:nil)
+        }
     }
 }
 

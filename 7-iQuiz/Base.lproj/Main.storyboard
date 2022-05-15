@@ -19,7 +19,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BYF-tx-DeK">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                 <items>
-                                    <barButtonItem title="Settings" id="ySz-j7-18v"/>
+                                    <barButtonItem title="Settings" id="ySz-j7-18v">
+                                        <connections>
+                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" id="WV8-LT-CFw"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="OGT-DT-wvn">
@@ -45,27 +49,21 @@
                                                         </imageView>
                                                     </subviews>
                                                 </stackView>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="7mx-db-vsM">
-                                                    <rect key="frame" x="227" y="31" width="87" height="32"/>
+                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LXP-wt-k4o">
+                                                    <rect key="frame" x="66" y="11" width="55.5" height="19.5"/>
                                                     <subviews>
-                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GbT-dU-7WL">
-                                                            <rect key="frame" x="0.0" y="0.0" width="87" height="32"/>
-                                                            <state key="normal" title="Button"/>
-                                                            <buttonConfiguration key="configuration" style="filled" title="Take Quiz"/>
-                                                        </button>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFD-RL-ZkB">
+                                                            <rect key="frame" x="0.0" y="0.0" width="55.5" height="19.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                 </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kFD-RL-ZkB">
-                                                    <rect key="frame" x="66" y="11" width="163" height="23"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description of subject" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4RG-dW-k3G">
-                                                    <rect key="frame" x="66" y="36" width="153" height="58"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the description of subject and its a very long string of text that should be wrapping into new lines" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sPV-17-zJr">
+                                                    <rect key="frame" x="66" y="36" width="238" height="58"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="153" id="3mJ-VU-UDI"/>
-                                                        <constraint firstAttribute="height" constant="58" id="Cat-vx-Pls"/>
+                                                        <constraint firstAttribute="height" constant="58" id="S0g-TL-q1Q"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -73,22 +71,18 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="kFD-RL-ZkB" secondAttribute="trailing" constant="75" id="2bN-EH-Uda"/>
-                                                <constraint firstItem="Mkt-ZJ-9lf" firstAttribute="centerY" secondItem="7mx-db-vsM" secondAttribute="centerY" id="BSM-21-kCf"/>
+                                                <constraint firstAttribute="bottom" secondItem="sPV-17-zJr" secondAttribute="bottom" id="7dG-qQ-MJT"/>
+                                                <constraint firstItem="sPV-17-zJr" firstAttribute="leading" secondItem="LXP-wt-k4o" secondAttribute="leading" id="CGB-lG-nKv"/>
                                                 <constraint firstItem="Mkt-ZJ-9lf" firstAttribute="centerY" secondItem="Oz3-Im-xMX" secondAttribute="centerY" id="IEn-bm-bDE"/>
-                                                <constraint firstItem="7mx-db-vsM" firstAttribute="top" secondItem="Oz3-Im-xMX" secondAttribute="topMargin" constant="20" id="LA0-Dh-cZw"/>
-                                                <constraint firstItem="4RG-dW-k3G" firstAttribute="top" secondItem="kFD-RL-ZkB" secondAttribute="bottom" constant="2" id="QGc-HX-0ah"/>
-                                                <constraint firstItem="4RG-dW-k3G" firstAttribute="leading" secondItem="Mkt-ZJ-9lf" secondAttribute="trailing" constant="8" symbolic="YES" id="WrR-yy-gvl"/>
+                                                <constraint firstItem="LXP-wt-k4o" firstAttribute="top" secondItem="Oz3-Im-xMX" secondAttribute="topMargin" id="NOS-Fd-nLt"/>
                                                 <constraint firstItem="Mkt-ZJ-9lf" firstAttribute="leading" secondItem="Oz3-Im-xMX" secondAttribute="leadingMargin" id="ZfA-11-g1S"/>
-                                                <constraint firstItem="4RG-dW-k3G" firstAttribute="leading" secondItem="kFD-RL-ZkB" secondAttribute="leading" id="dmN-tf-is4"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="7mx-db-vsM" secondAttribute="trailing" constant="-10" id="piu-Kx-ps7"/>
-                                                <constraint firstAttribute="bottom" secondItem="4RG-dW-k3G" secondAttribute="bottom" id="qvP-46-T04"/>
-                                                <constraint firstItem="kFD-RL-ZkB" firstAttribute="top" secondItem="Oz3-Im-xMX" secondAttribute="topMargin" id="rcB-SF-5jG"/>
+                                                <constraint firstItem="LXP-wt-k4o" firstAttribute="leading" secondItem="Mkt-ZJ-9lf" secondAttribute="trailing" constant="8" id="ZoT-r7-MUO"/>
+                                                <constraint firstItem="sPV-17-zJr" firstAttribute="trailing" secondItem="Oz3-Im-xMX" secondAttribute="trailingMargin" id="c2G-go-ITV"/>
                                                 <constraint firstItem="Mkt-ZJ-9lf" firstAttribute="top" secondItem="Oz3-Im-xMX" secondAttribute="topMargin" constant="13.5" id="tv5-Gx-vyS"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="descriptionLabel" destination="4RG-dW-k3G" id="4kz-Jz-hzK"/>
+                                            <outlet property="descriptionLabel" destination="sPV-17-zJr" id="Ha0-pT-uBF"/>
                                             <outlet property="subjectLabel" destination="kFD-RL-ZkB" id="Yc2-yL-qXM"/>
                                         </connections>
                                     </tableViewCell>

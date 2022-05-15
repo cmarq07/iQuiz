@@ -7,7 +7,8 @@
 
 import UIKit
 
-private class Subject {
+// Subject Class
+class Subject {
     var subjectTitle: String
     var description: String
 
@@ -17,19 +18,30 @@ private class Subject {
     }
 }
 
+// View Controller
 class ViewController: UIViewController {
 
     // Outlets
     @IBOutlet weak var subjectsTableView: UITableView!
     
-    @IBOutlet weak var subjectLabel: UILabel!
-    @IBOutlet weak var descriptionLabel: UILabel!
+    // Actions
+    // Action for when the settings button is pressed
+    @IBAction func settingsButtonPressed(_ sender: Any) {
+        let alert = UIAlertController(title: "Settings", message: "The settings button was pressed", preferredStyle: UIAlertController.Style.alert)
+        
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
+                // Do something when the settings button is pressed
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     // Data
     let quizSubjects: [AnyObject] = [
-        Subject(subjectTitle: "Mathematics", description: "1+1=?"),
+        Subject(subjectTitle: "Mathematics", description: "Lots of numbers"),
         Subject(subjectTitle: "Marvel Super Heroes", description: "Avengers Assemble"),
-        Subject(subjectTitle: "Science", description: "It's how the world works"),
+        Subject(subjectTitle: "Science", description: "It's how the world works!"),
     ]
     
     override func viewDidLoad() {

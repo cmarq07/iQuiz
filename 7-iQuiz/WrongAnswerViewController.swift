@@ -19,6 +19,10 @@ class WrongAnswerViewController: UIViewController {
         currentQuestion += 1
         if(currentQuestion == subject.questions.count) {
             let finalScoreVC = storyBoard.instantiateViewController(withIdentifier: "FinalScoreViewController") as! FinalScoreViewController
+            
+            finalScoreVC.finalScore = score
+            finalScoreVC.totalQuestions = subject.questions.count
+            
             // Present the Question Scene
             self.present(finalScoreVC, animated:true, completion:nil)
             
@@ -26,6 +30,7 @@ class WrongAnswerViewController: UIViewController {
             // Locate the ViewController
             let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
             // Pass data to the Question Scene
+            print("Score \(score)")
             questionVC.subject = subject
             questionVC.currentQuestion = currentQuestion
             

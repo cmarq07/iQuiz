@@ -73,6 +73,12 @@ class ViewController: UIViewController {
                         Answer(answer: "9", isCorrect: false),
                         Answer(answer: "17", isCorrect: false)
                     ]),
+                    Question(question: "What is 23 - 8?", answers: [
+                        Answer(answer: "14", isCorrect: false),
+                        Answer(answer: "16", isCorrect: false),
+                        Answer(answer: "20", isCorrect: false),
+                        Answer(answer: "15", isCorrect: true)
+                    ]),
                     Question(question: "What is 9 * 8?", answers: [
                         Answer(answer: "63", isCorrect: false),
                         Answer(answer: "98", isCorrect: false),
@@ -85,17 +91,47 @@ class ViewController: UIViewController {
                         Answer(answer: "10", isCorrect: false),
                         Answer(answer: "11", isCorrect: false)
                     ]),
+                    Question(question: "What is (30 * 2) - 4?", answers: [
+                        Answer(answer: "56", isCorrect: true),
+                        Answer(answer: "-60", isCorrect: false),
+                        Answer(answer: "46", isCorrect: false),
+                        Answer(answer: "33", isCorrect: false)
+                    ]),
+                    Question(question: "What is 3^5?", answers: [
+                        Answer(answer: "15", isCorrect: false),
+                        Answer(answer: "243", isCorrect: true),
+                        Answer(answer: "128", isCorrect: false),
+                        Answer(answer: "35", isCorrect: false)
+                    ]),
                 ]
                ),
         // Marvel Questions
         Subject(subjectTitle: "Marvel Super Heroes",
                 description: "Avengers assemble",
                 questions: [
-                    Question(question: "What is 60 / 5?", answers: [
-                        Answer(answer: "10", isCorrect: true),
-                        Answer(answer: "12", isCorrect: true),
-                        Answer(answer: "9", isCorrect: false),
-                        Answer(answer: "17", isCorrect: false)
+                    Question(question: "Which of these is an Avenger?", answers: [
+                        Answer(answer: "The Flash", isCorrect: false),
+                        Answer(answer: "Doctor Strange", isCorrect: true),
+                        Answer(answer: "Wolverine", isCorrect: false),
+                        Answer(answer: "Thanos", isCorrect: false)
+                    ]),
+                    Question(question: "Which Avenger uses a round shield that acts as a boomerang?", answers: [
+                        Answer(answer: "ShieldMan", isCorrect: false),
+                        Answer(answer: "AntMan", isCorrect: false),
+                        Answer(answer: "Captain America", isCorrect: true),
+                        Answer(answer: "Captain Marvel", isCorrect: false)
+                    ]),
+                    Question(question: "Which Marvel Hero beheads Thanos (MCU)?", answers: [
+                        Answer(answer: "Thor", isCorrect: true),
+                        Answer(answer: "Iron Man", isCorrect: true),
+                        Answer(answer: "Wolverine", isCorrect: false),
+                        Answer(answer: "Galactus", isCorrect: false)
+                    ]),
+                    Question(question: "Name the Infinity Stones.", answers: [
+                        Answer(answer: "Space, Reality, Power, Mind, Time", isCorrect: true),
+                        Answer(answer: "Death, Power, Life, Love, Rage", isCorrect: false),
+                        Answer(answer: "Power, Courage, Wisdom", isCorrect: false),
+                        Answer(answer: "Earth, Wind, Water, Fire", isCorrect: false)
                     ]),
                 ]
                ),
@@ -103,11 +139,11 @@ class ViewController: UIViewController {
         Subject(subjectTitle: "Science",
                 description: "How the world works",
                 questions: [
-                    Question(question: "What is 7+3?", answers: [
-                        Answer(answer: "10", isCorrect: true),
-                        Answer(answer: "73", isCorrect: false),
-                        Answer(answer: "9", isCorrect: false),
-                        Answer(answer: "17", isCorrect: false)
+                    Question(question: "Why is the sky blue?", answers: [
+                        Answer(answer: "The way the sun's light travels through the atmosphere", isCorrect: true),
+                        Answer(answer: "A reflection of all the water on Earth", isCorrect: false),
+                        Answer(answer: "The atmosphere contains particles that are blueish in color", isCorrect: false),
+                        Answer(answer: "It's not blue, but in fact the way our eyes see space", isCorrect: false)
                     ]),
                 ]
                ),

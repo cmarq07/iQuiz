@@ -24,11 +24,6 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        print("Current Question: \(currentQuestion)")
-//        print("Current Score: \(score)")
-//        print("Current Subject: \(subject.subjectTitle)")
-//        print("Current Questions: \(subject.questions[currentQuestion].answers)")
-        
         self.subjectLabel.text = subject.subjectTitle
         self.currentQuestionLabel.text = subject.questions[currentQuestion].question
 
@@ -48,7 +43,6 @@ extension QuestionViewController: UITableViewDelegate {
         
         if(answer.isCorrect) {
             let vc = storyBoard.instantiateViewController(withIdentifier: "CorrectAnswerViewController") as! CorrectAnswerViewController
-            score += 1
             vc.score = score
             vc.subject = subject
             vc.currentQuestion = currentQuestion

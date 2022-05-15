@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A14F84C28307347009C1FCD /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */; };
 		0A456E6A282DCF57004D39DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E69282DCF57004D39DB /* AppDelegate.swift */; };
 		0A456E6C282DCF57004D39DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E6B282DCF57004D39DB /* SceneDelegate.swift */; };
 		0A456E6E282DCF57004D39DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A456E6D282DCF57004D39DB /* ViewController.swift */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
 		0A456E66282DCF57004D39DB /* 7-iQuiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "7-iQuiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A456E69282DCF57004D39DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A456E6B282DCF57004D39DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +61,7 @@
 				0A456E69282DCF57004D39DB /* AppDelegate.swift */,
 				0A456E6B282DCF57004D39DB /* SceneDelegate.swift */,
 				0A456E6D282DCF57004D39DB /* ViewController.swift */,
+				0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */,
 				0A456E6F282DCF57004D39DB /* Main.storyboard */,
 				0A456E72282DCF59004D39DB /* Assets.xcassets */,
 				0A456E74282DCF59004D39DB /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A14F84C28307347009C1FCD /* SubjectTableViewCell.swift in Sources */,
 				0A456E6E282DCF57004D39DB /* ViewController.swift in Sources */,
 				0A456E6A282DCF57004D39DB /* AppDelegate.swift in Sources */,
 				0A456E6C282DCF57004D39DB /* SceneDelegate.swift in Sources */,

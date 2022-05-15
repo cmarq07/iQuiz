@@ -8,22 +8,26 @@
 import UIKit
 
 class WrongAnswerViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+    
+    var score: Int = 0
+    var subject: Subject = Subject(subjectTitle: "", description: "", questions: [])
+    var currentQuestion: Int = 0
+    
+    @IBAction func nextQuestionButtonPressed(_ sender: Any) {
+        // Set the storyboard
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        // Locate the QuestionViewController
+        let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
+        // Pass data to the Question Scene
+        questionVC.subject = subject
+        questionVC.currentQuestion = currentQuestion + 1
+        
+        // Present the Question Scene
+        self.present(questionVC, animated:true, completion:nil)
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
-    */
-
 }

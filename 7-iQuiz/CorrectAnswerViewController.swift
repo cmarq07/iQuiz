@@ -17,15 +17,24 @@ class CorrectAnswerViewController: UIViewController {
         // Set the storyboard
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
-        // Locate the QuestionViewController
-        let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
-        // Pass data to the Question Scene
-        questionVC.subject = subject
-        questionVC.currentQuestion = currentQuestion + 1
-        questionVC.score = score + 1
+        currentQuestion += 1
         
-        // Present the Question Scene
-        self.present(questionVC, animated:true, completion:nil)
+        if(currentQuestion == subject.questions.count) {
+            let finalScoreVC = storyBoard.instantiateViewController(withIdentifier: "FinalScoreViewController") as! FinalScoreViewController
+            // Present the Final Score Scene
+            self.present(finalScoreVC, animated:true, completion:nil)
+            
+        } else {
+            // Locate the ViewController
+            let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
+            // Pass data to the Question Scene
+            questionVC.subject = subject
+            questionVC.currentQuestion = currentQuestion
+            questionVC.score = score + 1
+            
+            // Present the Question Scene
+            self.present(questionVC, animated:true, completion:nil)
+        }
     }
     
     override func viewDidLoad() {

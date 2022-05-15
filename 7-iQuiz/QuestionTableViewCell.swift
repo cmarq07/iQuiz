@@ -23,7 +23,7 @@ class QuestionTableViewCell: UITableViewCell {
     
     func configureCell(cellText: String, index: Int, isCorrect: Bool) {
         self.answerLabel.text = cellText
-        self.backgroundColor =  index % 2 == 0 ? UIColor(rgb: 0xC64034) : UIColor(rgb: 0x953129)
+        self.backgroundColor =  index % 2 == 0 ? .white : .lightGray
         self.isCorrect = isCorrect
     }
     

@@ -30,7 +30,7 @@ class WrongAnswerViewController: UIViewController {
             // Locate the ViewController
             let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
             // Pass data to the Question Scene
-            print("Score \(score)")
+            questionVC.score = score
             questionVC.subject = subject
             questionVC.currentQuestion = currentQuestion
             

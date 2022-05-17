@@ -22,6 +22,28 @@ struct Answer {
     }
 }
 
+extension Answer: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case answer
+        case isCorrect
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(answer, forKey: .answer)
+        try container.encode(isCorrect, forKey: .isCorrect)
+    }
+}
+
+extension Answer: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        answer = try values.decode(String.self, forKey: .answer)
+        isCorrect = try values.decode(Bool.self, forKey: .isCorrect)
+    }
+}
+
 // Question Class
 struct Question {
     var question: String
@@ -38,6 +60,28 @@ struct Question {
             answerString += answer.toString() + " "
         }
         return "{ question: \"\(question)\", answers: \(answerString) }"
+    }
+}
+
+extension Question: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case question
+        case answers
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(question, forKey: .question)
+        try container.encode(answers, forKey: .answers)
+    }
+}
+
+extension Question: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        question = try values.decode(String.self, forKey: .question)
+        answers = try values.decode([Answer].self, forKey: .answers)
     }
 }
 
@@ -59,6 +103,31 @@ struct Subject {
             questionString += question.toString() + " "
         }
         return "{ subjectTitle: \(subjectTitle), description: \(description), questions: { \(questionString) } }"
+    }
+}
+
+extension Subject: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case subjectTitle
+        case description
+        case questions
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(subjectTitle, forKey: .subjectTitle)
+        try container.encode(description, forKey: .description)
+        try container.encode(questions, forKey: .questions)
+    }
+}
+
+extension Subject: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        subjectTitle = try values.decode(String.self, forKey: .subjectTitle)
+        description = try values.decode(String.self, forKey: .description)
+        questions = try values.decode([Question].self, forKey: .questions)
     }
 }
 
@@ -88,6 +157,25 @@ struct Quiz {
     }
 }
 
+extension Quiz: Encodable {
+    enum CodingKeys: String, CodingKey {
+        case subjects
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(subjects, forKey: .subjects)
+    }
+}
+
+extension Quiz: Decodable {
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        
+        subjects = try values.decode([Subject].self, forKey: .subjects)
+    }
+}
+
 // View Controller
 class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
@@ -109,92 +197,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     }
     
     // Data
-    var quiz: Quiz = Quiz(subjects: [
-        // Math Questions
-        Subject(subjectTitle: "Mathematics",
-                description: "Lots of numbers",
-                questions: [
-                    Question(question: "What is 7 + 3?", answers: [
-                        Answer(answer: "10", isCorrect: true),
-                        Answer(answer: "73", isCorrect: false),
-                        Answer(answer: "9", isCorrect: false),
-                        Answer(answer: "17", isCorrect: false)
-                    ]),
-                    Question(question: "What is 23 - 8?", answers: [
-                        Answer(answer: "14", isCorrect: false),
-                        Answer(answer: "16", isCorrect: false),
-                        Answer(answer: "20", isCorrect: false),
-                        Answer(answer: "15", isCorrect: true)
-                    ]),
-                    Question(question: "What is 9 * 8?", answers: [
-                        Answer(answer: "63", isCorrect: false),
-                        Answer(answer: "98", isCorrect: false),
-                        Answer(answer: "72", isCorrect: true),
-                        Answer(answer: "81", isCorrect: false)
-                    ]),
-                    Question(question: "What is 60 / 5?", answers: [
-                        Answer(answer: "13", isCorrect: false),
-                        Answer(answer: "12", isCorrect: true),
-                        Answer(answer: "10", isCorrect: false),
-                        Answer(answer: "11", isCorrect: false)
-                    ]),
-                    Question(question: "What is (30 * 2) - 4?", answers: [
-                        Answer(answer: "56", isCorrect: true),
-                        Answer(answer: "-60", isCorrect: false),
-                        Answer(answer: "46", isCorrect: false),
-                        Answer(answer: "33", isCorrect: false)
-                    ]),
-                    Question(question: "What is 3^5?", answers: [
-                        Answer(answer: "15", isCorrect: false),
-                        Answer(answer: "243", isCorrect: true),
-                        Answer(answer: "128", isCorrect: false),
-                        Answer(answer: "35", isCorrect: false)
-                    ]),
-                ]
-               ),
-        // Marvel Questions
-        Subject(subjectTitle: "Marvel Super Heroes",
-                description: "Avengers assemble",
-                questions: [
-                    Question(question: "Which of these is an Avenger?", answers: [
-                        Answer(answer: "The Flash", isCorrect: false),
-                        Answer(answer: "Doctor Strange", isCorrect: true),
-                        Answer(answer: "Wolverine", isCorrect: false),
-                        Answer(answer: "Thanos", isCorrect: false)
-                    ]),
-                    Question(question: "Which Avenger uses a round shield that acts as a boomerang?", answers: [
-                        Answer(answer: "ShieldMan", isCorrect: false),
-                        Answer(answer: "AntMan", isCorrect: false),
-                        Answer(answer: "Captain America", isCorrect: true),
-                        Answer(answer: "Captain Marvel", isCorrect: false)
-                    ]),
-                    Question(question: "Which Marvel Hero beheads Thanos (MCU)?", answers: [
-                        Answer(answer: "Thor", isCorrect: true),
-                        Answer(answer: "Iron Man", isCorrect: true),
-                        Answer(answer: "Wolverine", isCorrect: false),
-                        Answer(answer: "Galactus", isCorrect: false)
-                    ]),
-                    Question(question: "Name the Infinity Stones.", answers: [
-                        Answer(answer: "Space, Reality, Power, Mind, Time", isCorrect: true),
-                        Answer(answer: "Death, Power, Life, Love, Rage", isCorrect: false),
-                        Answer(answer: "Power, Courage, Wisdom", isCorrect: false),
-                        Answer(answer: "Earth, Wind, Water, Fire", isCorrect: false)
-                    ]),
-                ]
-               ),
-        // Science Questions
-        Subject(subjectTitle: "Science",
-                description: "How the world works",
-                questions: [
-                    Question(question: "Why is the sky blue?", answers: [
-                        Answer(answer: "The way the sun's light travels through the atmosphere", isCorrect: true),
-                        Answer(answer: "A reflection of all the water on Earth", isCorrect: false),
-                        Answer(answer: "The atmosphere contains particles that are blueish in color", isCorrect: false),
-                        Answer(answer: "It's not blue, but in fact the way our eyes see space", isCorrect: false)
-                    ]),
-                ]
-               ),
-    ])
+    var quiz: Quiz = Quiz()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -203,6 +206,62 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         subjectsTableView.dataSource = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let localData = self.readLocalFile(forName: "LocalQuizData") {
+            print(localData)
+            quiz = self.parse(jsonData: localData)
+        }
+        
+        let urlString = "LocalQuizData"
+        
+    }
+    
+    // Function to read the Local Quiz Data
+    private func readLocalFile(forName name: String) -> Data? {
+        do {
+            if let bundlePath = Bundle.main.path(forResource: name,
+                                                 ofType: "json"),
+                let jsonData = try String(contentsOfFile: bundlePath).data(using: .utf8) {
+                return jsonData
+            }
+        } catch {
+            print(error)
+        }
+        
+        return nil
+    }
+    
+    // Function to parse the json data read from the file
+    private func parse(jsonData: Data) -> Quiz {
+        do {
+            let decodedData = try JSONDecoder().decode(Quiz.self,
+                                                       from: jsonData)
+            return decodedData
+        } catch {
+            print("decode error")
+            return Quiz()
+        }
+    }
+    
+    // Function to load the JSON from the file
+    private func loadJson(fromURLString urlString: String,
+                          completion: @escaping (Result<Data, Error>) -> Void) {
+        if let url = URL(string: urlString) {
+            let urlSession = URLSession(configuration: .default).dataTask(with: url) { (data, response, error) in
+                if let error = error {
+                    completion(.failure(error))
+                }
+                
+                if let data = data {
+                    completion(.success(data))
+                }
+            }
+            
+            urlSession.resume()
+        }
+    }
 }
 
 extension ViewController: UITableViewDelegate, ChangeQuizDataDelegate {

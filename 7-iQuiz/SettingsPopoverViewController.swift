@@ -14,13 +14,14 @@ protocol ChangeQuizDataDelegate: AnyObject {
 
 class SettingsPopoverViewController: UIViewController {
     
+    @IBOutlet weak var checkNowButton: UIButton!
     @IBOutlet weak var urlInputField: UITextField!
     @IBOutlet weak var resultsLabel: UILabel!
     
     weak var delegate: ChangeQuizDataDelegate?
     
     // Initial data URL
-    var dataUrl: URL = URL(string: "http://tednewardsandbox.site44.com/questions.json")!
+    var dataUrl: URL = URL(string: "http://google.com")!
     
     // Gets the data from the URL and sets it as the quiz data (also shows up in the settings popover)
     @IBAction func retrieveDataPressed(_ sender: Any) {
@@ -66,31 +67,13 @@ class SettingsPopoverViewController: UIViewController {
                     
                     // On the main thread...
                     DispatchQueue.main.async {
+                        
                         self!.resultsLabel.text = newQuiz.toString()
                         self!.delegate?.changeQuizData(quiz: newQuiz)
                     }
                 } catch {
                     
                 }
-                
-                // Check if JSON can be made out of the data
-                //                if let jsonString = String(data: data, encoding: .utf8) {
-                //                    // On the main thread...
-                //                    DispatchQueue.main.async {
-                //                        let dataObject = jsonString.toJSON()!
-                //                        print(dataObject as AnyObject)
-                //
-                //                        // var newQuiz = [Subject(subjectTitle: dataObject[0].title, description: dataObject[0].desc, questions: [])]
-                //                        if let rootVC = self!.navigationController?.viewControllers.first as? ViewController {
-                //                            rootVC.quiz = jsonString.toJSON() as! [AnyObject]
-                //                            rootVC.subjectsTableView.reloadData()
-                //                        }
-                //                        self!.resultsLabel.text = jsonString
-                //                    }
-                //                    // Couldn't make a JSON string out of the data
-                //                } else {
-                //                    // handle error...
-                //                }
                 // Data was invalid for some reason
             } else {
                 // handle error...
@@ -101,6 +84,32 @@ class SettingsPopoverViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        UserDefaults.standard.register(defaults: [String : Any]())
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // Get URL from settings
+        let userDefaults = UserDefaults.standard
+        userDefaults.synchronize()
+        
+        var quizUrl = userDefaults.string(forKey: "quiz_url")
+        if quizUrl == nil {
+            quizUrl = "http://tednewardsandbox.site44.com/questions.json"
+        }
+        urlInputField.text = quizUrl
+        
+        let reachability = try! Reachability(hostname: quizUrl!)
+        if(reachability.connection == .wifi || reachability.connection == .cellular) {
+            resultsLabel.text = "Data preview will appear here after clicking check now"
+            print("Person is online")
+        } else {
+            resultsLabel.text = "You are currently offline"
+            urlInputField.isEnabled = false
+            checkNowButton.isEnabled = false
+        }
         
     }
 }

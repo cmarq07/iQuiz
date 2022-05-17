@@ -69,6 +69,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="checkNowButton" destination="lMq-DR-hft" id="c79-zA-seR"/>
                         <outlet property="resultsLabel" destination="31s-ZV-raw" id="UB8-2n-igV"/>
                         <outlet property="urlInputField" destination="I1H-Hk-L2T" id="RQc-Oe-mxg"/>
                     </connections>

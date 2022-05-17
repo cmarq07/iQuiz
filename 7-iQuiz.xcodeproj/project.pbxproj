@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A03A35D283307F9001E41D9 /* SettingsPopoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A03A35C283307F9001E41D9 /* SettingsPopoverViewController.swift */; };
 		0A14F84C28307347009C1FCD /* SubjectTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */; };
 		0A14F84E2830907D009C1FCD /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84D2830907D009C1FCD /* QuestionViewController.swift */; };
 		0A14F85028309ADC009C1FCD /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A14F84F28309ADC009C1FCD /* QuestionTableViewCell.swift */; };
@@ -23,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A03A35C283307F9001E41D9 /* SettingsPopoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPopoverViewController.swift; sourceTree = "<group>"; };
 		0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubjectTableViewCell.swift; sourceTree = "<group>"; };
 		0A14F84D2830907D009C1FCD /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		0A14F84F28309ADC009C1FCD /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 				0A456E6D282DCF57004D39DB /* ViewController.swift */,
 				0A14F84B28307347009C1FCD /* SubjectTableViewCell.swift */,
 				0A456E6F282DCF57004D39DB /* Main.storyboard */,
+				0A03A35C283307F9001E41D9 /* SettingsPopoverViewController.swift */,
 				0A14F84D2830907D009C1FCD /* QuestionViewController.swift */,
 				0A14F84F28309ADC009C1FCD /* QuestionTableViewCell.swift */,
 				0A456E72282DCF59004D39DB /* Assets.xcassets */,
@@ -162,6 +165,7 @@
 				0A14F84C28307347009C1FCD /* SubjectTableViewCell.swift in Sources */,
 				0A14F8522830A876009C1FCD /* UIColor.swift in Sources */,
 				0A14F85A2830C0B2009C1FCD /* FinalScoreViewController.swift in Sources */,
+				0A03A35D283307F9001E41D9 /* SettingsPopoverViewController.swift in Sources */,
 				0A14F84E2830907D009C1FCD /* QuestionViewController.swift in Sources */,
 				0A456E6E282DCF57004D39DB /* ViewController.swift in Sources */,
 				0A14F8582830AFD8009C1FCD /* WrongAnswerViewController.swift in Sources */,

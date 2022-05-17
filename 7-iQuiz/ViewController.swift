@@ -50,15 +50,14 @@ class ViewController: UIViewController {
     
     // Actions
     // Action for when the settings button is pressed
-    @IBAction func settingsButtonPressed(_ sender: Any) {
-        let alert = UIAlertController(title: "Settings", message: "The settings button was pressed", preferredStyle: UIAlertController.Style.alert)
+    @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
         
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: {(action:UIAlertAction!) in
-            // Do something when the settings button is pressed
-        }))
-        
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
+        let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController")
+        vc.modalPresentationStyle = .popover
+        let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        popover.barButtonItem = sender
+        present(vc, animated: true, completion:nil)
     }
     
     // Data

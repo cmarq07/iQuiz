@@ -181,6 +181,7 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
     
     // Outlets
     @IBOutlet weak var subjectsTableView: UITableView!
+    @IBOutlet weak var wifiStatusLabel: UILabel!
     
     // Actions
     // Action for when the settings button is pressed
@@ -210,12 +211,15 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         super.viewWillAppear(animated)
         
         if let localData = self.readLocalFile(forName: "LocalQuizData") {
-            print(localData)
             quiz = self.parse(jsonData: localData)
         }
         
-        let urlString = "LocalQuizData"
-        
+        let reachability = try! Reachability(hostname: "http://tednewardsandbox.site44.com/questions.json")
+        if(reachability.connection == .wifi || reachability.connection == .cellular) {
+            wifiStatusLabel.text = "Online"
+        } else {
+            wifiStatusLabel.text = "Offlne"
+        }
     }
     
     // Function to read the Local Quiz Data

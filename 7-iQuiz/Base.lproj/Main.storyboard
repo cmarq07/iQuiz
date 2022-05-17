@@ -18,6 +18,7 @@
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="http://tednewardsandbox.site44.com/questions.json" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="I1H-Hk-L2T">
                                 <rect key="frame" x="16" y="49" width="288" height="34"/>
+                                <color key="backgroundColor" red="1" green="0.92040816328780972" blue="0.60204081632653061" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="Yl9-Qd-2KQ"/>
                                 </constraints>
@@ -52,7 +53,7 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ABf-p6-hbK"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.94470131802721091" green="0.80322707408922855" blue="0.23733009833729948" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="0RQ-BX-0AN" firstAttribute="top" secondItem="ABf-p6-hbK" secondAttribute="top" constant="20" id="3Pt-Tn-9RP"/>
                             <constraint firstItem="0RQ-BX-0AN" firstAttribute="leading" secondItem="aPK-Sn-808" secondAttribute="leadingMargin" id="JGg-Q0-Mqu"/>
@@ -162,11 +163,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Offline" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hgb-SO-bev">
+                                <rect key="frame" x="253" y="0.0" width="51" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
                         <constraints>
+                            <constraint firstItem="Hgb-SO-bev" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="7L4-ai-Y3O"/>
+                            <constraint firstItem="Hgb-SO-bev" firstAttribute="top" secondItem="BYF-tx-DeK" secondAttribute="top" id="9Py-Id-Rpi"/>
                             <constraint firstItem="BYF-tx-DeK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="EUn-of-0CM"/>
+                            <constraint firstItem="Hgb-SO-bev" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Tau-2j-vR3"/>
                             <constraint firstItem="BYF-tx-DeK" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="XT2-Wa-mC3"/>
                             <constraint firstItem="BYF-tx-DeK" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YkI-Bm-oWn"/>
                             <constraint firstItem="OGT-DT-wvn" firstAttribute="trailing" secondItem="BYF-tx-DeK" secondAttribute="trailing" id="boR-Ea-I6o"/>
@@ -177,6 +187,7 @@
                     </view>
                     <connections>
                         <outlet property="subjectsTableView" destination="OGT-DT-wvn" id="30Q-PF-99X"/>
+                        <outlet property="wifiStatusLabel" destination="Hgb-SO-bev" id="bTd-Yc-Q7A"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -449,9 +460,6 @@
         <image name="checkmark.seal" catalog="system" width="128" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="xmark.circle.fill" catalog="system" width="128" height="121"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

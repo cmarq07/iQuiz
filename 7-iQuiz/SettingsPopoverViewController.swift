@@ -104,7 +104,6 @@ class SettingsPopoverViewController: UIViewController {
         let reachability = try! Reachability(hostname: quizUrl!)
         if(reachability.connection == .wifi || reachability.connection == .cellular) {
             resultsLabel.text = "Data preview will appear here after clicking check now"
-            print("Person is online")
         } else {
             resultsLabel.text = "You are currently offline"
             urlInputField.isEnabled = false

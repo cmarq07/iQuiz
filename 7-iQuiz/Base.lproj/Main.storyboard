@@ -92,7 +92,7 @@
                                     <barButtonItem title="Settings" id="ySz-j7-18v">
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
-                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" id="xfW-LZ-8mw"/>
+                                            <action selector="settingsButtonPressed:" destination="BYZ-38-t0r" id="ei1-1M-mEf"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>

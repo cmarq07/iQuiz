@@ -8,7 +8,7 @@
 import UIKit
 
 // Answer Class
-class Answer {
+struct Answer {
     var answer: String
     var isCorrect: Bool
     
@@ -16,10 +16,14 @@ class Answer {
         self.answer = answer
         self.isCorrect = isCorrect
     }
+    
+    func toString() -> String {
+        return "{ answer: \"\(answer)\", isCorrect: \(isCorrect) }"
+    }
 }
 
 // Question Class
-class Question {
+struct Question {
     var question: String
     var answers: [Answer]
     
@@ -27,10 +31,18 @@ class Question {
         self.question = question
         self.answers = answers
     }
+    
+    func toString() -> String {
+        var answerString = ""
+        for answer in answers {
+            answerString += answer.toString() + " "
+        }
+        return "{ question: \"\(question)\", answers: \(answerString) }"
+    }
 }
 
 // Subject Class
-class Subject {
+struct Subject {
     var subjectTitle: String
     var description: String
     var questions: [Question]
@@ -40,10 +52,44 @@ class Subject {
         self.description = description
         self.questions = questions
     }
+    
+    func toString() -> String {
+        var questionString = ""
+        for question in questions {
+            questionString += question.toString() + " "
+        }
+        return "{ subjectTitle: \(subjectTitle), description: \(description), questions: { \(questionString) } }"
+    }
+}
+
+// Quiz Class
+struct Quiz {
+    var subjects: [Subject] = []
+    
+    init() {
+        self.subjects = []
+    }
+    
+    init(subjects: [Subject]) {
+        self.subjects = subjects
+    }
+    
+    mutating func add(subject: Subject) {
+        self.subjects.append(subject)
+    }
+    
+    func toString() -> String {
+        var returnString = "[ "
+        for subject in 0..<subjects.count - 1 {
+            returnString += subjects[subject].toString() + ", "
+        }
+        returnString += subjects[subjects.count - 1].toString() + " ]"
+        return returnString
+    }
 }
 
 // View Controller
-class ViewController: UIViewController {
+class ViewController: UIViewController, UIPopoverPresentationControllerDelegate {
     
     // Outlets
     @IBOutlet weak var subjectsTableView: UITableView!
@@ -51,17 +97,19 @@ class ViewController: UIViewController {
     // Actions
     // Action for when the settings button is pressed
     @IBAction func settingsButtonPressed(_ sender: UIBarButtonItem) {
-        
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController")
+        let vc = storyboard.instantiateViewController(withIdentifier: "PopoverViewController") as! SettingsPopoverViewController
+        vc.delegate = self
         vc.modalPresentationStyle = .popover
         let popover: UIPopoverPresentationController = vc.popoverPresentationController!
+        print(self)
+        popover.delegate = self
         popover.barButtonItem = sender
         present(vc, animated: true, completion:nil)
     }
     
     // Data
-    let quiz: [AnyObject] = [
+    var quiz: Quiz = Quiz(subjects: [
         // Math Questions
         Subject(subjectTitle: "Mathematics",
                 description: "Lots of numbers",
@@ -146,8 +194,7 @@ class ViewController: UIViewController {
                     ]),
                 ]
                ),
-        
-    ]
+    ])
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,7 +205,7 @@ class ViewController: UIViewController {
     
 }
 
-extension ViewController: UITableViewDelegate {
+extension ViewController: UITableViewDelegate, ChangeQuizDataDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         // Set the storyboard
@@ -167,18 +214,25 @@ extension ViewController: UITableViewDelegate {
         // Locate the QuestionViewController
         let questionVC = storyBoard.instantiateViewController(withIdentifier: "QuestionViewController") as! QuestionViewController
         // Pass data to the Question Scene
-        questionVC.subject = quiz[indexPath.row] as! Subject
+        questionVC.subject = quiz.subjects[indexPath.row]
         questionVC.currentQuestion = 0
         
         // Present the Question Scene
         self.present(questionVC, animated:true, completion:nil)
+    }
+    
+    func changeQuizData(quiz: Quiz) {
+        self.dismiss(animated: true) {
+            self.quiz = quiz
+            self.subjectsTableView.reloadData()
+        }
     }
 }
 
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return quiz.count
+        return quiz.subjects.count
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -187,7 +241,7 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "subjectCell", for: indexPath) as?  SubjectTableViewCell {
-            let currentSubject = quiz[indexPath.row] as! Subject
+            let currentSubject = quiz.subjects[indexPath.row]
             
             cell.subjectLabel?.text = currentSubject.subjectTitle
             cell.descriptionLabel?.text = currentSubject.description

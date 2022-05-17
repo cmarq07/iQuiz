@@ -205,6 +205,70 @@ class ViewController: UIViewController, UIPopoverPresentationControllerDelegate 
         
         subjectsTableView.delegate = self
         subjectsTableView.dataSource = self
+        
+        
+        let reachability = try! Reachability(hostname: "http://tednewardsandbox.site44.com/questions.json")
+        if(reachability.connection == .wifi || reachability.connection == .cellular) {
+            print("Online -- using Online Data")
+            // Set the data URL to whatever is in the inputField
+            let dataUrl = URL(string: "http://tednewardsandbox.site44.com/questions.json")!
+            // idk what this does tbh
+            URLSession.shared.dataTask(with: dataUrl) { [weak self] data, response, error in
+                // Check if the data is valid
+                if let data = data {
+                    // Try to serialize the data as JSON
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: []) as! [AnyObject]
+                        
+                        var newQuiz: Quiz = Quiz()
+                        for subject in json {
+                            let title = subject["title"]!!
+                            let desc = subject["desc"]!!
+                            let questions = subject["questions"]!! as! [AnyObject]
+                            
+                            var newQuestions: [Question] = []
+                            
+                            for question in questions {
+                                let correctAnswer = Int((question["answer"]!! as! NSString).intValue)
+                                
+                                let answers = question["answers"]!! as! [String]
+                                var newAnswers: [Answer] = []
+                                var index = 1
+                                for answer in answers {
+                                    let isAnswer = correctAnswer == index
+                                    index += 1
+                                    let newAnswer = Answer(answer: answer, isCorrect: isAnswer)
+                                    newAnswers.append(newAnswer)
+                                }
+                                let newQuestion: Question = Question(question: question["text"] as! String, answers: newAnswers)
+                                newQuestions.append(newQuestion)
+                            }
+                            
+                            let newSubject: Subject = Subject(subjectTitle: title as! String, description: desc as! String, questions: newQuestions)
+                            
+                            newQuiz.add(subject: newSubject)
+                        }
+                        
+                        // On the main thread...
+                        DispatchQueue.main.async {
+                            self!.quiz = newQuiz
+                            self!.subjectsTableView.reloadData()
+                        }
+                    } catch {
+                        
+                    }
+                    // Data was invalid for some reason
+                } else {
+                    // handle error...
+                    return
+                }
+            }.resume() // If it gets here, the code was successful
+        } else {
+            print("Offline -- using Local Data")
+            if let localData = self.readLocalFile(forName: "LocalQuizData") {
+                quiz = self.parse(jsonData: localData)
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
